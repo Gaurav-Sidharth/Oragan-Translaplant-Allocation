@@ -1,0 +1,5 @@
+package service;
+import model.*; import java.util.ArrayList;
+public class AnalyticsManager {
+    public static void showAnalytics(ArrayList<Organ> organs,ArrayList<Allocation> allocations,ArrayList<Recipient> recipients){int wasted=0;for(Organ o:organs)if(o.isWasted())wasted++;int total=organs.size();double allocRate=total==0?0:100.0*allocations.size()/total;double wasteRate=total==0?0:100.0*wasted/total;double wait=0;for(Recipient r:recipients)wait+=r.getWaitingDays();double avg=recipients.isEmpty()?0:wait/recipients.size();System.out.println("\n========== SYSTEM ANALYTICS ==========");System.out.println("Total organs       : "+total);System.out.println("Successful         : "+allocations.size());System.out.println("Wasted organs      : "+wasted);System.out.printf("Allocation rate    : %.2f%%%n",allocRate);System.out.printf("Wastage rate       : %.2f%%%n",wasteRate);System.out.printf("Average waiting    : %.2f days%n",avg);System.out.println("======================================");}
+}
